@@ -1,0 +1,20 @@
+# This file skips the 'release-candidate' branch for the FreeRTOS-FreeRTOS
+# repository
+
+behaviors:
+  - target-branches:
+    - 'release-candidate'
+    action:
+      name: skip
+  - target-branches:
+    - '*'
+    action:
+      name: run-proofs
+
+checkout-script:
+  - git submodule update --init –-checkout --recursive
+
+paths:
+  proof-directory: proofs/cbmc/proofs
+  ProofCommand: ./run-cbmc-proofs.py
+  LitaniDir: test/cbmc/litani
